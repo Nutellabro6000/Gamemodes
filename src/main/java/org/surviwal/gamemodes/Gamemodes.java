@@ -14,9 +14,13 @@ import org.surviwal.gamemodes.KitPVP.Commands.KitCommand;
 import org.surviwal.gamemodes.KitPVP.Commands.KitOld;
 
 public final class Gamemodes extends JavaPlugin {
-Plugin plugin = Bukkit.getPluginManager().getPlugin("Gamemodes");
     @Override
     public void onEnable() {
+        try {
+            Plugin plugin = Bukkit.getPluginManager().getPlugin("SAS");
+        }catch (Exception e){
+            Bukkit.getPluginManager().disablePlugin(this);
+        }
         saveDefaultConfig();
         Bukkit.broadcastMessage(ChatColor.GREEN + "[Gamemodes]" + ChatColor.RESET + " Online");
         getCommand("activekit").setExecutor(new ActiveKitCommand());
