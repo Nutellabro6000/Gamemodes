@@ -1,0 +1,4 @@
+name: Gamemodes
+version: '${project.version}'
+main: org.surviwal.gamemodes.Gamemodes
+api-version: '1.21'
