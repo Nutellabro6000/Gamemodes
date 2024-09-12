@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class KitCommand implements CommandExecutor {
-    Plugin plugin = Bukkit.getPluginManager().getPlugin("KitPVP");
+    Plugin plugin = Bukkit.getPluginManager().getPlugin("Gamemodes");
     @Override
     public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] args) {
 

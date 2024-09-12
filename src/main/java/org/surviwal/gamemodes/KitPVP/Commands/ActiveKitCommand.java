@@ -9,7 +9,7 @@ import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
 
 public class ActiveKitCommand implements CommandExecutor {
-    Plugin plugin = Bukkit.getPluginManager().getPlugin("KitPVP");
+    Plugin plugin = Bukkit.getPluginManager().getPlugin("Gamemodes");
     @Override
     public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] args) {
         if (commandSender.hasPermission("SAS.Command.Kit")){

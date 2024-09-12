@@ -18,7 +18,7 @@ import java.util.Random;
 
 public class StartCommand implements CommandExecutor, Listener {
 
-    Plugin plugin = Bukkit.getServer().getPluginManager().getPlugin("HideNSeek");
+    Plugin plugin = Bukkit.getServer().getPluginManager().getPlugin("Gamemodes");
     World world = Bukkit.getWorld("HideNSeak");
     boolean HideNSeekActive = false;
     int Deaths = 0;
