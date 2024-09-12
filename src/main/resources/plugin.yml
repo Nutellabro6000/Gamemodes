@@ -2,3 +2,26 @@ name: Gamemodes
 version: '${project.version}'
 main: org.surviwal.gamemodes.Gamemodes
 api-version: '1.21'
+commands:
+  kit:
+    usage: /<command>
+    description: Gives you a kit
+    permission: SAS.Command.Kit
+  kitEditor:
+    usage: /<command>
+    description: test
+    permission: SAS.Command.kit
+  ActiveKit:
+    usage: /ActiveKit {1-3}
+    description: changes the active kit
+    permission: SAS.Command.Kit
+  Arena:
+    usage: /<command>
+    description: creates an Arena
+    permission: SAS.Command.Arena
+  start:
+    description: Starts HideNSeek
+    usage: /<command>
+  scale:
+    description: Gives you all the Scales
+    usage: /<command>
