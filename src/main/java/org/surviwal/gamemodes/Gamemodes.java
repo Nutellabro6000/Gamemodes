@@ -2,6 +2,7 @@ package org.surviwal.gamemodes;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.surviwal.gamemodes.HideNSeek.Commands.ScalesCommand;
 import org.surviwal.gamemodes.HideNSeek.Commands.StartCommand;
@@ -13,7 +14,7 @@ import org.surviwal.gamemodes.KitPVP.Commands.KitCommand;
 import org.surviwal.gamemodes.KitPVP.Commands.KitOld;
 
 public final class Gamemodes extends JavaPlugin {
-
+Plugin plugin = Bukkit.getPluginManager().getPlugin("Gamemodes");
     @Override
     public void onEnable() {
         saveDefaultConfig();
