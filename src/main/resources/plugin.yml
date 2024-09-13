@@ -25,3 +25,12 @@ commands:
   scale:
     description: Gives you all the Scales
     usage: /<command>
+  permissions:
+    HideNSeek.command.scale:
+      default: op
+    HideNSeek.command.start:
+      default: op
+  SAS.Command.Kit:
+    default: op
+  SAS.Command.Arena:
+    default: false
