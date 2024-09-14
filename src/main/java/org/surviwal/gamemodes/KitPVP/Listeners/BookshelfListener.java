@@ -46,7 +46,7 @@ public class BookshelfListener implements Listener {
                         Inventory inventory = Bukkit.createInventory(null, 5 * 9, "\uD83D\uDD57");
                         for (Enchantment ench : enchantments){
                             String name  = ench.getName();
-                            inventory.setItem(18 + enchantments.indexOf(ench), new ItemBuilder(Material.ENCHANTED_BOOK).setDisplayname(name).addEnchantment(ench, 1).build());
+                            inventory.setItem(27 + enchantments.indexOf(ench), new ItemBuilder(Material.ENCHANTED_BOOK).setDisplayname(name).addEnchantment(ench, 1).build());
                         }
                         inventory.setItem(13, new ItemBuilder(material).build());
                         player.openInventory(inventory);
@@ -65,7 +65,9 @@ public class BookshelfListener implements Listener {
                 ItemStack item = event.getCurrentItem();
                 Enchantment enchantment = Enchantment.getByName(item.getItemMeta().getDisplayName());
                 ItemStack itemInHand = player.getItemInHand();
-                itemInHand.addEnchantment(enchantment, enchantment.getMaxLevel());
+                if (enchantment.canEnchantItem(itemInHand)) {
+                    itemInHand.addEnchantment(enchantment, enchantment.getMaxLevel());
+                }
             }
         }
 
