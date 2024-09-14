@@ -3,6 +3,7 @@ package org.surviwal.gamemodes.KitPVP.Listeners;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Item;
@@ -16,22 +17,39 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.surviwal.gamemodes.ItemBuilder;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class BookshelfListener implements Listener {
-
+    World world = Bukkit.getWorld("KitPVP");
+    World world1 = Bukkit.getWorld("ArenaTemplate");
+    List<World> worlds = new ArrayList<>();
     @EventHandler
     public void Rightclick(PlayerInteractEvent e){
+        worlds.add(world1);
+        worlds.add(world);
         Player player = e.getPlayer();
-        if (player.getWorld().equals("KitPVP") || player.getWorld().equals("ArenaTemplate")){
+        if (worlds.contains(player.getWorld())){
             Action action = e.getAction();
             if (action.equals(Action.RIGHT_CLICK_BLOCK)){
                 Block block = e.getClickedBlock();
                     if (block.getType().equals(Material.BOOKSHELF)){
-                        Inventory inventory = Bukkit.createInventory(null, 6 * 9, "\uD83D\uDD57");
-                        inventory.setItem(3, new ItemBuilder(Material.ENCHANTED_BOOK).setDisplayname(ChatColor.RESET + "Sharpness").setLore("Sharpness").build());
-                        inventory.setItem(5, new ItemBuilder(Material.ENCHANTED_BOOK).setDisplayname(ChatColor.RESET + "Protection").setLore("Protection").build());
+                        ItemStack item = player.getItemInHand();
+                        Material material = item.getType();
+                        List<Enchantment> enchantments = new ArrayList<>();
+                        for (Enchantment enchants : Enchantment.values()){
+                            if (enchants.canEnchantItem(item)){
+                                enchantments.add(enchants);
+                            }
+                        }
+                        Inventory inventory = Bukkit.createInventory(null, 5 * 9, "\uD83D\uDD57");
+                        for (Enchantment ench : enchantments){
+                            String name  = ench.getName();
+                            inventory.setItem(18 + enchantments.indexOf(ench), new ItemBuilder(Material.ENCHANTED_BOOK).setDisplayname(name).addEnchantment(ench, 1).build());
+                        }
+                        inventory.setItem(13, new ItemBuilder(material).build());
                         player.openInventory(inventory);
-
                 }
             }
 
@@ -39,21 +57,15 @@ public class BookshelfListener implements Listener {
     }
     @EventHandler
     public void InvListener(InventoryClickEvent event){
-        Inventory inventory = event.getClickedInventory();
         if (event.getView().getTitle().equals("\uD83D\uDD57")){
             Player player = (Player) event.getWhoClicked();
-            if (event.getCurrentItem().getLore().equals("Sharpness")){
-                ItemStack item = player.getActiveItem();
-                Enchantment enchantment = Enchantment.SHARPNESS;
-                if (enchantment.canEnchantItem(item)){
-                    item.addEnchantment(enchantment, 5);
-                }
-            } else if (event.getCurrentItem().getLore().equals("Protection")){
-                ItemStack item = player.getActiveItem();
-                Enchantment enchantment = Enchantment.PROTECTION;
-                if (enchantment.canEnchantItem(item)){
-                    item.addEnchantment(enchantment, 4);
-                }
+            event.setCancelled(true);
+            if (event.getCurrentItem() == null){ return; }
+            if (event.getCurrentItem().getItemMeta().hasEnchants()){
+                ItemStack item = event.getCurrentItem();
+                Enchantment enchantment = Enchantment.getByName(item.getItemMeta().getDisplayName());
+                ItemStack itemInHand = player.getItemInHand();
+                itemInHand.addEnchantment(enchantment, enchantment.getMaxLevel());
             }
         }
 

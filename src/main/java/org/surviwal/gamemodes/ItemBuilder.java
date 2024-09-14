@@ -1,6 +1,8 @@
 package org.surviwal.gamemodes;
 
 import org.bukkit.Material;
+import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.Item;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -28,6 +30,11 @@ public class ItemBuilder {
     }
     public ItemBuilder addItemFlags(ItemFlag... s){
         itemMeta.addItemFlags(s);
+        return this;
+    }
+
+    public ItemBuilder addEnchantment(Enchantment s, int level){
+        itemMeta.addEnchant(s, level, true);
         return this;
     }
 
