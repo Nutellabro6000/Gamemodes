@@ -12,6 +12,7 @@ import org.surviwal.gamemodes.KitPVP.Commands.ActiveKitCommand;
 import org.surviwal.gamemodes.KitPVP.Commands.ArenaSystem;
 import org.surviwal.gamemodes.KitPVP.Commands.KitCommand;
 import org.surviwal.gamemodes.KitPVP.Commands.KitOld;
+import org.surviwal.gamemodes.KitPVP.Listeners.BookshelfListener;
 
 public final class Gamemodes extends JavaPlugin {
     @Override
@@ -33,6 +34,7 @@ public final class Gamemodes extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new Scales(), this);
         getServer().getPluginManager().registerEvents(new IgnoreInvClick(), this);
         getServer().getPluginManager().registerEvents(new StartCommand(), this);
+        getServer().getPluginManager().registerEvents(new BookshelfListener(), this);
         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "team add HideNSeek");
         saveConfig();
     }
