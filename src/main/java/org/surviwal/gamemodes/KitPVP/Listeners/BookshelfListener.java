@@ -37,6 +37,7 @@ public class BookshelfListener implements Listener {
                     if (block.getType().equals(Material.BOOKSHELF)){
                         ItemStack item = player.getItemInHand();
                         Material material = item.getType();
+                        e.setCancelled(true);
                         List<Enchantment> enchantments = new ArrayList<>();
                         for (Enchantment enchants : Enchantment.values()){
                             if (enchants.canEnchantItem(item)){
