@@ -43,10 +43,10 @@ public class BookshelfListener implements Listener {
                                 enchantments.add(enchants);
                             }
                         }
-                        Inventory inventory = Bukkit.createInventory(null, 5 * 9, "\uD83D\uDD57");
+                        Inventory inventory = Bukkit.createInventory(null, 6 * 9, "Bookshelf");
                         for (Enchantment ench : enchantments){
                             String name  = ench.getName();
-                            inventory.setItem(27 + enchantments.indexOf(ench), new ItemBuilder(Material.ENCHANTED_BOOK).setDisplayname(name).addEnchantment(ench, 1).build());
+                            inventory.setItem(27 + enchantments.indexOf(ench), new ItemBuilder(Material.ENCHANTED_BOOK).setDisplayname(ChatColor.DARK_GRAY + name).addEnchantment(ench, 1).build());
                         }
                         inventory.setItem(13, new ItemBuilder(material).build());
                         player.openInventory(inventory);
@@ -57,16 +57,17 @@ public class BookshelfListener implements Listener {
     }
     @EventHandler
     public void InvListener(InventoryClickEvent event){
-        if (event.getView().getTitle().equals("\uD83D\uDD57")){
+        if (event.getView().getTitle().equals("Bookshelf")){
             Player player = (Player) event.getWhoClicked();
             event.setCancelled(true);
             if (event.getCurrentItem() == null){ return; }
             if (event.getCurrentItem().getItemMeta().hasEnchants()){
                 ItemStack item = event.getCurrentItem();
-                Enchantment enchantment = Enchantment.getByName(item.getItemMeta().getDisplayName());
+                Enchantment enchantment = Enchantment.getByName(ChatColor.RESET + item.getItemMeta().getDisplayName());
                 ItemStack itemInHand = player.getItemInHand();
+                int Level = itemInHand.getEnchantmentLevel(enchantment);
                 if (enchantment.canEnchantItem(itemInHand)) {
-                    itemInHand.addEnchantment(enchantment, enchantment.getMaxLevel());
+                    itemInHand.addEnchantment(enchantment, Level + 1);
                 }
             }
         }
