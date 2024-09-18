@@ -58,6 +58,8 @@ public class ArenaSystem implements CommandExecutor, Listener {
         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "mvclone ArenaTemplate Arena_" + name1 + "-" + name2);
         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "mvtp " + name1 + " Arena_" + name1 + "-" + name2);
         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "mvtp " + name2 + " Arena_" + name1 + "-" + name2);
+        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "tp " + name1 + " 0 -54 -25");
+        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "tp " + name2 + " 0 -54 25");
         String kitname = "kit" + Kit;
         new BukkitRunnable() {
             @Override
